@@ -33,7 +33,7 @@ public class MyRealm extends AuthorizingRealm {
         if (null == found) {
             throw new UnknownAccountException("用户名不存在");
         }
-        return new SimpleAuthenticationInfo(found, found.getPass(), getName());
+        return new SimpleAuthenticationInfo(found, found.getPassword(), getName());
 
     }
 

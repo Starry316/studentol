@@ -1,5 +1,6 @@
 package cn.xuzilin.core.shiro.token;
 
+import cn.xuzilin.common.po.StudentEntity;
 import com.alibaba.fastjson.JSON;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
@@ -21,13 +22,24 @@ public class TokenManager {
     }
 
 
+
+    public static StudentEntity getStudentToken(){
+        return (StudentEntity) get("student");
+    }
+    public static void studentLogin(StudentEntity student){
+        save("student",student);
+    }
+    public static void studentLogout(){
+        getAndRemove("student");
+    }
+
     public static UserEntity getUserToken(){
         return (UserEntity) getSubject().getPrincipal();
     }
     public static void login(UserEntity user){
         UserToken token = new UserToken();
         token.setAccount(user.getAccount());
-        token.setPass(user.getPass());
+        token.setPass(user.getPassword());
         token.setRememberMe(false);
         getSubject().login(token);
     }

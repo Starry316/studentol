@@ -55,8 +55,35 @@
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
 
+        <!--<table schema="general"-->
+                   <!--tableName="application" domainObjectName="ApplicationEntity"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false" >-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--</table>-->
+        <!--<table schema="general"-->
+               <!--tableName="task" domainObjectName="TaskEntity"-->
+               <!--enableCountByExample="false"-->
+               <!--enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false"-->
+               <!--enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false" >-->
+            <!--<property name="useActualColumnNames" value="true"/>-->
+        <!--</table>-->
         <table schema="general"
-               tableName="user" domainObjectName="UserEntity"
+               tableName="task_score" domainObjectName="TaskScoreEntity"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false" >
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+        <table schema="general"
+               tableName="student" domainObjectName="StudentEntity"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
@@ -65,125 +92,5 @@
             <property name="useActualColumnNames" value="true"/>
         </table>
 
-        <!--<table schema="general"-->
-               <!--tableName="help_feedback" domainObjectName="HelpFeedbackEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-        <!--<table schema="general"-->
-               <!--tableName="index_feedback" domainObjectName="IndexFeedbackEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-        <!--<table schema="general"-->
-            <!--tableName="insure_company" domainObjectName="InsureCompanyEntity"-->
-            <!--enableCountByExample="false"-->
-            <!--enableUpdateByExample="false"-->
-            <!--enableDeleteByExample="false"-->
-            <!--enableSelectByExample="false"-->
-            <!--selectByExampleQueryId="false" >-->
-        <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-        <!--<table schema="general"-->
-               <!--tableName="order" domainObjectName="OrderEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-        <!--<table schema="general"-->
-               <!--tableName="order_insurance" domainObjectName="OrderInsuranceEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-        <!--<table schema="general"-->
-               <!--tableName="vehicle" domainObjectName="VehicleEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-        <!--<table schema="general"-->
-               <!--tableName="file" domainObjectName="FileEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-        <!--<table schema="general"-->
-               <!--tableName="address" domainObjectName="AddressEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-        <!--<table schema="general"-->
-               <!--tableName="t_manager" domainObjectName="ManagerEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-        <!--<table schema="general"-->
-               <!--tableName="t_role" domainObjectName="RoleEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-        <!--<table schema="general"-->
-               <!--tableName="t_permission" domainObjectName="PermissionEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
-
-
-        <!--<table schema="general"-->
-               <!--tableName="t_manager_role" domainObjectName="ManagerRoleEntity"-->
-               <!--enableCountByExample="false"-->
-               <!--enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false" >-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
     </context>
 </generatorConfiguration>

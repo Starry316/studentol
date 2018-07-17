@@ -7,11 +7,9 @@ public class UserEntity implements Serializable {
 
     private String account;
 
-    private String pass;
+    private String password;
 
-    private String nickName;
-
-    private String phone_number;
+    private String name;
 
     public Integer getId() {
         return id;
@@ -29,27 +27,19 @@ public class UserEntity implements Serializable {
         this.account = account == null ? null : account.trim();
     }
 
-    public String getPass() {
-        return pass;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPass(String pass) {
-        this.pass = pass == null ? null : pass.trim();
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getName() {
+        return name;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName == null ? null : nickName.trim();
-    }
-
-    public String getPhone_number() {
-        return phone_number;
-    }
-
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number == null ? null : phone_number.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 }

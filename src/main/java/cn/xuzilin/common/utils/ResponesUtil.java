@@ -1,6 +1,7 @@
 package cn.xuzilin.common.utils;
 
 import cn.xuzilin.common.vo.MessageVo;
+import com.alibaba.fastjson.JSONObject;
 
 import java.util.Date;
 
@@ -18,6 +19,20 @@ public class ResponesUtil {
         MessageVo messageVo = new MessageVo();
         messageVo.setStatus(500);
         messageVo.setMessage(mes);
+        return messageVo;
+    }
+    public static MessageVo success(String mes ,Object data){
+        MessageVo messageVo = new MessageVo();
+        messageVo.setStatus(200);
+        messageVo.setMessage(mes);
+        messageVo.setData(data);
+        return messageVo;
+    }
+    public static MessageVo systemError(String mes ,Object data){
+        MessageVo messageVo = new MessageVo();
+        messageVo.setStatus(500);
+        messageVo.setMessage(mes);
+        messageVo.setData(data);
         return messageVo;
     }
 }
