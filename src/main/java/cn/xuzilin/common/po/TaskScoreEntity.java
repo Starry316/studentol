@@ -3,7 +3,7 @@ package cn.xuzilin.common.po;
 public class TaskScoreEntity {
     private Integer id;
 
-    private String student_id;
+    private Integer local_sid;
 
     private Integer task_id;
 
@@ -19,12 +19,12 @@ public class TaskScoreEntity {
         this.id = id;
     }
 
-    public String getStudent_id() {
-        return student_id;
+    public Integer getLocal_sid() {
+        return local_sid;
     }
 
-    public void setStudent_id(String student_id) {
-        this.student_id = student_id == null ? null : student_id.trim();
+    public void setLocal_sid(Integer local_sid) {
+        this.local_sid = local_sid;
     }
 
     public Integer getTask_id() {

@@ -3,13 +3,13 @@
 <mapper namespace="cn.xuzilin.common.dao.TaskScoreEntityMapper">
   <resultMap id="BaseResultMap" type="cn.xuzilin.common.po.TaskScoreEntity">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="student_id" jdbcType="VARCHAR" property="student_id" />
+    <result column="local_sid" jdbcType="INTEGER" property="local_sid" />
     <result column="task_id" jdbcType="INTEGER" property="task_id" />
     <result column="status" jdbcType="TINYINT" property="status" />
     <result column="score" jdbcType="INTEGER" property="score" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, student_id, task_id, status, score
+    id, local_sid, task_id, status, score
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -22,9 +22,9 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.xuzilin.common.po.TaskScoreEntity">
-    insert into task_score (id, student_id, task_id, 
+    insert into task_score (id, local_sid, task_id, 
       status, score)
-    values (#{id,jdbcType=INTEGER}, #{student_id,jdbcType=VARCHAR}, #{task_id,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{local_sid,jdbcType=INTEGER}, #{task_id,jdbcType=INTEGER}, 
       #{status,jdbcType=TINYINT}, #{score,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="cn.xuzilin.common.po.TaskScoreEntity">
@@ -33,8 +33,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="student_id != null">
-        student_id,
+      <if test="local_sid != null">
+        local_sid,
       </if>
       <if test="task_id != null">
         task_id,
@@ -50,8 +50,8 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="student_id != null">
-        #{student_id,jdbcType=VARCHAR},
+      <if test="local_sid != null">
+        #{local_sid,jdbcType=INTEGER},
       </if>
       <if test="task_id != null">
         #{task_id,jdbcType=INTEGER},
@@ -67,8 +67,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.xuzilin.common.po.TaskScoreEntity">
     update task_score
     <set>
-      <if test="student_id != null">
-        student_id = #{student_id,jdbcType=VARCHAR},
+      <if test="local_sid != null">
+        local_sid = #{local_sid,jdbcType=INTEGER},
       </if>
       <if test="task_id != null">
         task_id = #{task_id,jdbcType=INTEGER},
@@ -84,7 +84,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.xuzilin.common.po.TaskScoreEntity">
     update task_score
-    set student_id = #{student_id,jdbcType=VARCHAR},
+    set local_sid = #{local_sid,jdbcType=INTEGER},
       task_id = #{task_id,jdbcType=INTEGER},
       status = #{status,jdbcType=TINYINT},
       score = #{score,jdbcType=INTEGER}
