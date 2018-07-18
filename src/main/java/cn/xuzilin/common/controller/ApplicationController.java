@@ -85,6 +85,7 @@ public class ApplicationController {
             stages[0] = applicationEntity.getStage();
             stages[1] = applicationEntity.getStage2();
             jsonObject.put("stage",stages);
+            jsonObject.put("introduction",applicationEntity.getIntroduction());
             jsonArray.add(jsonObject);
         }
         return ResponesUtil.success("success",jsonArray);
@@ -101,6 +102,7 @@ public class ApplicationController {
         StudentEntity studentEntity = new StudentEntity();
         ApplicationEntity applicationEntity = new ApplicationEntity();
         studentEntity.setStudent_name(map.get("name"));
+        System.out.println(map.get("name"));
         studentEntity.setSex(map.get("sex"));
         studentEntity.setStudent_id(map.get("stu_no"));
         studentEntity.setCampus(map.get("campus"));
@@ -111,6 +113,7 @@ public class ApplicationController {
         applicationEntity.setStudent_id(map.get("stu_no"));
         applicationEntity.setIntention(map.get("department1"));
         applicationEntity.setIntention(map.get("department2"));
+        applicationEntity.setIntroduction(map.get("introduction"));
         Date date = new Date();
         applicationEntity.setSign_time(date);
         applicationEntity.setStage("1");
