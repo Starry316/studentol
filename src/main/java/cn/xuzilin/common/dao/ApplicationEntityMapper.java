@@ -30,4 +30,7 @@ public interface ApplicationEntityMapper {
     @Select("Select intention,intention2,stage from application where student_id = #{student_id}")
     ApplicationEntity SelectById(@Param("student_id") String student_id);
 
+    @Select("Select * from application where student_id = #{student_id}")
+    ApplicationEntity selectBySid(@Param("student_id") String student_id);
+
 }

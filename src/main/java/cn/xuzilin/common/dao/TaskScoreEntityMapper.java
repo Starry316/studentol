@@ -1,6 +1,11 @@
 package cn.xuzilin.common.dao;
 
 import cn.xuzilin.common.po.TaskScoreEntity;
+import cn.xuzilin.common.vo.ScoreVo;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 public interface TaskScoreEntityMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +19,7 @@ public interface TaskScoreEntityMapper {
     int updateByPrimaryKeySelective(TaskScoreEntity record);
 
     int updateByPrimaryKey(TaskScoreEntity record);
+
+    @Select("SELECT * FROM task_score WHERE task_id = #{tid} AND local_sid = #{sid}")
+    TaskScoreEntity selectByTidAndLocalSid(@Param("tid") int tid,@Param("sid")int localSid);
 }
