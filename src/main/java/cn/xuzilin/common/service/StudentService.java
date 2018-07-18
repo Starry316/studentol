@@ -30,6 +30,7 @@ public class StudentService {
             studentMapper.insert(student);
         else
             student = found;
+
         TokenManager.studentLogin(student);
     }
 

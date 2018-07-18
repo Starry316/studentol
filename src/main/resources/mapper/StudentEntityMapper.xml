@@ -13,7 +13,7 @@
     <result column="qq" jdbcType="VARCHAR" property="qq" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, student_name, student_id, phone_number, campus, sex, academy, from, qq
+    id, student_name, student_id, phone_number, campus, sex, academy, `from`, qq
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -25,15 +25,15 @@
     delete from student
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="cn.xuzilin.common.po.StudentEntity">
+  <insert id="insert" parameterType="cn.xuzilin.common.po.StudentEntity" useGeneratedKeys="true" keyProperty="id">
     insert into student (id, student_name, student_id, 
       phone_number, campus, sex, 
-      academy, from, qq)
+      academy, `from`, qq)
     values (#{id,jdbcType=INTEGER}, #{student_name,jdbcType=VARCHAR}, #{student_id,jdbcType=VARCHAR}, 
       #{phone_number,jdbcType=VARCHAR}, #{campus,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{academy,jdbcType=VARCHAR}, #{from,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="cn.xuzilin.common.po.StudentEntity">
+  <insert id="insertSelective" parameterType="cn.xuzilin.common.po.StudentEntity" useGeneratedKeys="true" keyProperty="id">
     insert into student
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -58,7 +58,7 @@
         academy,
       </if>
       <if test="from != null">
-        from,
+        `from`,
       </if>
       <if test="qq != null">
         qq,
@@ -116,7 +116,7 @@
         academy = #{academy,jdbcType=VARCHAR},
       </if>
       <if test="from != null">
-        from = #{from,jdbcType=VARCHAR},
+        `from` = #{from,jdbcType=VARCHAR},
       </if>
       <if test="qq != null">
         qq = #{qq,jdbcType=VARCHAR},
@@ -132,7 +132,7 @@
       campus = #{campus,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       academy = #{academy,jdbcType=VARCHAR},
-      from = #{from,jdbcType=VARCHAR},
+      `from`= #{from,jdbcType=VARCHAR},
       qq = #{qq,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -18,6 +18,7 @@ public interface TaskEntityMapper {
     int updateByPrimaryKeySelective(TaskEntity record);
 
     int updateByPrimaryKey(TaskEntity record);
+
     @Select("SELECT * From task WHERE intention = #{intention}")
     List<TaskEntity> selectByIntention(@Param("intention") String intention);
 }
