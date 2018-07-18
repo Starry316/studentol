@@ -47,11 +47,9 @@ public class ApplicationController {
 
     @GetMapping("/process")
     public MessageVo process(){
-//        StudentEntity student = TokenManager.getStudentToken();
-        StudentEntity student = new StudentEntity();
-        student.setStudent_id("12");
+        StudentEntity student = TokenManager.getStudentToken();
         ApplicationEntity application = SignUpService.ReturnData(student);
-        JSONArray jsonObject = new JSONArray(2);
+        JSONArray jsonObject = new JSONArray();
         JSONObject jsonObject1 = new JSONObject();
         jsonObject1.put("intention",application.getIntention());
         jsonObject1.put("stage",application.getStage());
