@@ -20,6 +20,21 @@ public class ConstPool {
     public static final String TUANDUI = "4";
     public static final String YIBAN = "5";
     //部门代号 department
-
-
+    public static final String tech_shijue = "10";
+    public static final String tech_web = "11";
+    public static final String tech_android = "12";
+    public static final String app_chanpin = "20";
+    public static final String app_neirong = "21";
+    public static final String media_xiaoshuling = "30";
+    public static final String media_shitu = "31";
+    public static final String media_youyan = "32";
+    public static final String media_yidu = "33";
+    public static final String media_xinwen = "34";
+    public static final String team_renli = "40";
+    public static final String team_caiwu = "41";
+    public static final String team_caigou = "42";
+    public static final String team_yunying = "43";
+    public static final String yiban_shenghuofuwu = "50";
+    public static final String yiban_pintaiyunying = "51";
+    public static final String yiban_gongguantuiguang = "52";
 }

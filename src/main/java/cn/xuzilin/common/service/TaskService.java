@@ -6,7 +6,6 @@ import cn.xuzilin.common.dao.TaskScoreEntityMapper;
 import cn.xuzilin.common.po.ApplicationEntity;
 import cn.xuzilin.common.po.TaskEntity;
 import cn.xuzilin.common.po.TaskScoreEntity;
-import cn.xuzilin.common.vo.ScoreVo;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Service;

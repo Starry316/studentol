@@ -2,28 +2,23 @@ package cn.xuzilin.common.controller;
 
 import cn.xuzilin.common.po.ApplicationEntity;
 import cn.xuzilin.common.po.StudentEntity;
-import cn.xuzilin.common.service.SignUpService;
-import cn.xuzilin.common.service.StudentService;
+import cn.xuzilin.common.service.ApplicationService;
 import cn.xuzilin.common.utils.ResponesUtil;
 import cn.xuzilin.common.vo.MessageVo;
 import cn.xuzilin.core.shiro.token.TokenManager;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import netscape.javascript.JSException;
-import netscape.javascript.JSObject;
-import org.apache.catalina.mapper.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class ApplicationController {
 
     @Resource
-    private SignUpService SignUpService;
+    private ApplicationService ApplicationService;
 
     @PostMapping("/form")
     public MessageVo form(@RequestParam Map<String,String> map){
@@ -41,14 +36,14 @@ public class ApplicationController {
         if (map.get("intention2")!=null){
             application.setStage2("1");
         }
-        SignUpService.SignUp(application);
+        ApplicationService.SignUp(application);
         return ResponesUtil.success("success");
     }
 
     @GetMapping("/process")
     public MessageVo process(){
         StudentEntity student = TokenManager.getStudentToken();
-        ApplicationEntity application = SignUpService.ReturnData(student);
+        ApplicationEntity application = ApplicationService.ReturnData(student);
         JSONArray jsonObject = new JSONArray();
         JSONObject jsonObject1 = new JSONObject();
         jsonObject1.put("intention",application.getIntention());
@@ -61,6 +56,75 @@ public class ApplicationController {
         return ResponesUtil.success("success",jsonObject);
     }
 
+    @GetMapping("/info/get")
+    public MessageVo info_get(@RequestParam Map<String,String> map){
+        List<String> list = ApplicationService.ReturnByCampus(map.get("campus"));
+        List<String> student_ids = new ArrayList<>();
+        JSONArray jsonArray = new JSONArray();
+        for (String student_id : list){
+            student_ids.add(ApplicationService.ReturnId(student_id,map.get("department"),map.get("stage")));
+        }
+        for (String student_id : student_ids){
+            StudentEntity studentEntity = ApplicationService.StudentInfo(student_id);
+            ApplicationEntity applicationEntity = ApplicationService.ApplicationInfo(student_id);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id",applicationEntity.getId());
+            jsonObject.put("name",studentEntity.getStudent_name());
+            jsonObject.put("sex",studentEntity.getSex());
+            jsonObject.put("stu_no",studentEntity.getStudent_id());
+            jsonObject.put("campus",studentEntity.getCampus());
+            jsonObject.put("academy",studentEntity.getAcademy());
+            jsonObject.put("from",studentEntity.getFrom());
+            String[] intentions = new String[2];
+            intentions[0]=applicationEntity.getIntention();
+            intentions[1]=applicationEntity.getIntention2();
+            jsonObject.put("department",intentions);
+            jsonObject.put("tel",studentEntity.getPhone_number());
+            jsonObject.put("qq",studentEntity.getQq());
+            String[] stages = new String[2];
+            stages[0] = applicationEntity.getStage();
+            stages[1] = applicationEntity.getStage2();
+            jsonObject.put("stage",stages);
+            jsonArray.add(jsonObject);
+        }
+        return ResponesUtil.success("success",jsonArray);
+    }
 
+    @PostMapping("/info/manage")
+    public  MessageVo info_manage(@RequestParam Map<String,String> map){
+        ApplicationService.ChangeStage(map.get("id"),map.get("type"),map.get("department"));
+        return ResponesUtil.success("success");
+    }
+
+    @PostMapping("/info/add")
+    public MessageVo info_add(@RequestParam Map<String,String> map){
+        StudentEntity studentEntity = new StudentEntity();
+        ApplicationEntity applicationEntity = new ApplicationEntity();
+        studentEntity.setStudent_name(map.get("name"));
+        studentEntity.setSex(map.get("sex"));
+        studentEntity.setStudent_id(map.get("stu_no"));
+        studentEntity.setCampus(map.get("campus"));
+        studentEntity.setAcademy(map.get("academy"));
+        studentEntity.setFrom(map.get("from"));
+        studentEntity.setPhone_number(map.get("tel"));
+        studentEntity.setQq(map.get("qq"));
+        applicationEntity.setStudent_id(map.get("stu_no"));
+        applicationEntity.setIntention(map.get("department1"));
+        applicationEntity.setIntention(map.get("department2"));
+        Date date = new Date();
+        applicationEntity.setSign_time(date);
+        applicationEntity.setStage("1");
+        applicationEntity.setStage2("1");
+        int i = ApplicationService.IsStudentExist(studentEntity,studentEntity.getStudent_id());
+        int j = ApplicationService.IsSignUp(applicationEntity,applicationEntity.getStudent_id());
+        if (i ==0&&j==0)
+            return ResponesUtil.success("该学生已注册，已报名");
+        else if (i==0&&j==1)
+            return ResponesUtil.success("该学生已注册，报名成功");
+        else if (i==1&&j==0)
+            return ResponesUtil.success("该学生注册成功，已报名");
+        else
+            return ResponesUtil.success("该学生注册成功，报名成功");
+    }
 
 }
