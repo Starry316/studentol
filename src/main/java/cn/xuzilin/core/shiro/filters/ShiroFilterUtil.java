@@ -20,7 +20,7 @@ import java.util.Map;
 public class ShiroFilterUtil {
     private static final Class<? extends ShiroFilterUtil> CLAZZ = ShiroFilterUtil.class;
     //登录页面
-    public static final String LOGIN_URL = "/open/back/login";
+    public static final String LOGIN_URL = "/open/page/loginPage";
 
     public static final String PHONE_URL = "/open/phone";
 

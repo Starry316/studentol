@@ -13,6 +13,7 @@ import cn.xuzilin.common.utils.LoggerUtil;
  */
 public class TokenManager {
 
+
     public static Subject getSubject() {
         return SecurityUtils.getSubject();
     }

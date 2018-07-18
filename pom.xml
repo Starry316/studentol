@@ -112,12 +112,7 @@
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/com.springsource.com.thoughtworks.xstream -->
-		<dependency>
-			<groupId>com.thoughtworks.xstream</groupId>
-			<artifactId>com.springsource.com.thoughtworks.xstream</artifactId>
-			<version>1.4.1</version>
-		</dependency>
+
 
 		<!-- JSON插件 -->
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->

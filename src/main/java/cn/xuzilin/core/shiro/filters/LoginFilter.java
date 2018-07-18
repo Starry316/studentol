@@ -1,6 +1,7 @@
 package cn.xuzilin.core.shiro.filters;
 
 
+import cn.xuzilin.common.po.StudentEntity;
 import cn.xuzilin.common.po.UserEntity;
 import org.apache.shiro.web.filter.AccessControlFilter;
 import org.apache.shiro.web.util.WebUtils;
@@ -22,7 +23,7 @@ public class LoginFilter extends AccessControlFilter {
     @Override
     protected boolean isAccessAllowed(ServletRequest servletRequest, ServletResponse servletResponse,
                                       Object o) throws Exception {
-        UserEntity token = TokenManager.getUserToken();
+        StudentEntity token = TokenManager.getStudentToken();
         if (token != null) {
             return true;
         }

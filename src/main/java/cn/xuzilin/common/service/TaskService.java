@@ -44,4 +44,19 @@ public class TaskService {
         }
         return jsonArray;
     }
+    public List<TaskEntity> getTaskListByIntention(String intention){
+        return taskMapper.selectByIntention(intention);
+    }
+    public List<TaskScoreEntity> getTaskScoreByIntentionAndlocalSid(String intention,int localSid){
+        List<TaskEntity> tList = getTaskListByIntention(intention);
+        List<TaskScoreEntity> tsList = new ArrayList<TaskScoreEntity>();
+        for (TaskEntity i: tList){
+            TaskScoreEntity t =taskScoreMapper.selectByTidAndLocalSid(i.getId(),localSid);
+            tsList.add(t);
+        }
+        return tsList;
+    }
+    public void updateTaskScore(TaskScoreEntity taskScore){
+        taskScoreMapper.updateByPrimaryKeySelective(taskScore);
+    }
 }

@@ -1,6 +1,8 @@
 package cn.xuzilin.common.po;
 
-public class StudentEntity {
+import java.io.Serializable;
+
+public class StudentEntity implements Serializable {
     private Integer id;
 
     private String student_name;
