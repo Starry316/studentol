@@ -9,7 +9,15 @@ public class StudentEntity {
 
     private String phone_number;
 
-    private String college;
+    private String campus;
+
+    private String sex;
+
+    private String academy;
+
+    private String from;
+
+    private String qq;
 
     public Integer getId() {
         return id;
@@ -43,11 +51,43 @@ public class StudentEntity {
         this.phone_number = phone_number == null ? null : phone_number.trim();
     }
 
-    public String getCollege() {
-        return college;
+    public String getCampus() {
+        return campus;
     }
 
-    public void setCollege(String college) {
-        this.college = college == null ? null : college.trim();
+    public void setCampus(String campus) {
+        this.campus = campus == null ? null : campus.trim();
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
+    }
+
+    public String getAcademy() {
+        return academy;
+    }
+
+    public void setAcademy(String academy) {
+        this.academy = academy == null ? null : academy.trim();
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from == null ? null : from.trim();
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq == null ? null : qq.trim();
     }
 }

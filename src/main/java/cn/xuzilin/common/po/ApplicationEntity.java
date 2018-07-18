@@ -5,17 +5,17 @@ import java.util.Date;
 public class ApplicationEntity {
     private Integer id;
 
-    private String name;
-
-    private String student_id;
-
     private String intention;
 
     private Date sign_time;
 
-    private Byte stage;
+    private String intention2;
 
-    private String campus;
+    private String student_id;
+
+    private String stage;
+
+    private String stage2;
 
     private String introduction;
 
@@ -25,22 +25,6 @@ public class ApplicationEntity {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getStudent_id() {
-        return student_id;
-    }
-
-    public void setStudent_id(String student_id) {
-        this.student_id = student_id == null ? null : student_id.trim();
     }
 
     public String getIntention() {
@@ -59,20 +43,36 @@ public class ApplicationEntity {
         this.sign_time = sign_time;
     }
 
-    public Byte getStage() {
+    public String getIntention2() {
+        return intention2;
+    }
+
+    public void setIntention2(String intention2) {
+        this.intention2 = intention2 == null ? null : intention2.trim();
+    }
+
+    public String getStudent_id() {
+        return student_id;
+    }
+
+    public void setStudent_id(String student_id) {
+        this.student_id = student_id == null ? null : student_id.trim();
+    }
+
+    public String getStage() {
         return stage;
     }
 
-    public void setStage(Byte stage) {
-        this.stage = stage;
+    public void setStage(String stage) {
+        this.stage = stage == null ? null : stage.trim();
     }
 
-    public String getCampus() {
-        return campus;
+    public String getStage2() {
+        return stage2;
     }
 
-    public void setCampus(String campus) {
-        this.campus = campus == null ? null : campus.trim();
+    public void setStage2(String stage2) {
+        this.stage2 = stage2 == null ? null : stage2.trim();
     }
 
     public String getIntroduction() {

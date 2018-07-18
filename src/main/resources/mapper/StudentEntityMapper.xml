@@ -6,10 +6,14 @@
     <result column="student_name" jdbcType="VARCHAR" property="student_name" />
     <result column="student_id" jdbcType="VARCHAR" property="student_id" />
     <result column="phone_number" jdbcType="VARCHAR" property="phone_number" />
-    <result column="college" jdbcType="VARCHAR" property="college" />
+    <result column="campus" jdbcType="VARCHAR" property="campus" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="academy" jdbcType="VARCHAR" property="academy" />
+    <result column="from" jdbcType="VARCHAR" property="from" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, student_name, student_id, phone_number, college
+    id, student_name, student_id, phone_number, campus, sex, academy, from, qq
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,9 +27,11 @@
   </delete>
   <insert id="insert" parameterType="cn.xuzilin.common.po.StudentEntity">
     insert into student (id, student_name, student_id, 
-      phone_number, college)
+      phone_number, campus, sex, 
+      academy, from, qq)
     values (#{id,jdbcType=INTEGER}, #{student_name,jdbcType=VARCHAR}, #{student_id,jdbcType=VARCHAR}, 
-      #{phone_number,jdbcType=VARCHAR}, #{college,jdbcType=VARCHAR})
+      #{phone_number,jdbcType=VARCHAR}, #{campus,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{academy,jdbcType=VARCHAR}, #{from,jdbcType=VARCHAR}, #{qq,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.xuzilin.common.po.StudentEntity">
     insert into student
@@ -42,8 +48,20 @@
       <if test="phone_number != null">
         phone_number,
       </if>
-      <if test="college != null">
-        college,
+      <if test="campus != null">
+        campus,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="academy != null">
+        academy,
+      </if>
+      <if test="from != null">
+        from,
+      </if>
+      <if test="qq != null">
+        qq,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -59,8 +77,20 @@
       <if test="phone_number != null">
         #{phone_number,jdbcType=VARCHAR},
       </if>
-      <if test="college != null">
-        #{college,jdbcType=VARCHAR},
+      <if test="campus != null">
+        #{campus,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="academy != null">
+        #{academy,jdbcType=VARCHAR},
+      </if>
+      <if test="from != null">
+        #{from,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        #{qq,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -76,8 +106,20 @@
       <if test="phone_number != null">
         phone_number = #{phone_number,jdbcType=VARCHAR},
       </if>
-      <if test="college != null">
-        college = #{college,jdbcType=VARCHAR},
+      <if test="campus != null">
+        campus = #{campus,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="academy != null">
+        academy = #{academy,jdbcType=VARCHAR},
+      </if>
+      <if test="from != null">
+        from = #{from,jdbcType=VARCHAR},
+      </if>
+      <if test="qq != null">
+        qq = #{qq,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -87,7 +129,11 @@
     set student_name = #{student_name,jdbcType=VARCHAR},
       student_id = #{student_id,jdbcType=VARCHAR},
       phone_number = #{phone_number,jdbcType=VARCHAR},
-      college = #{college,jdbcType=VARCHAR}
+      campus = #{campus,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      academy = #{academy,jdbcType=VARCHAR},
+      from = #{from,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

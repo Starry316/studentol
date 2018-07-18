@@ -78,9 +78,8 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setSecurityManager( securityManager() );
 
         Map<String, Filter> filterMap = new LinkedHashMap<>();
+
         filterMap.put("login", loginFilter());
-        filterMap.put("forbid", forbidFilter());
-        filterMap.put("alreadyLogin", alreadyLoginFilter());
         shiroFilterFactoryBean.setFilters(filterMap);
 
         loadFiltersChain(shiroFilterFactoryBean);
@@ -98,8 +97,6 @@ public class ShiroConfig {
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
 
-        // 需要特殊配置的拦截器
-        filterChainDefinitionMap.put("/open/back/login", "alreadyLogin");
 
         // 配置不会被拦截的链接 顺序判断
         filterChainDefinitionMap.put("/js/**", "anon");
@@ -113,8 +110,7 @@ public class ShiroConfig {
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
         //过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
         //authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
-        filterChainDefinitionMap.put("/hide/**", "forbid");
-        filterChainDefinitionMap.put("/page/**", "login");
+        filterChainDefinitionMap.put("/manager/**", "login");
 
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -147,27 +143,7 @@ public class ShiroConfig {
         return registration;
     }
 
-    @Bean
-    public AlreadyLoginFilter alreadyLoginFilter() {
-        return new AlreadyLoginFilter();
-    }
-    @Bean
-    public FilterRegistrationBean alreadyLoginFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean(alreadyLoginFilter());
-        registration.setEnabled(false);
-        return registration;
-    }
 
-    @Bean
-    public ForbidFilter forbidFilter() {
-        return new ForbidFilter();
-    }
-    @Bean
-    public FilterRegistrationBean forbidFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean(forbidFilter());
-        registration.setEnabled(false);
-        return registration;
-    }
 
 //    @Bean
 //    public WeixinAuthFilter weixinAuthFilter() {

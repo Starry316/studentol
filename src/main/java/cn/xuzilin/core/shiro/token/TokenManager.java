@@ -27,6 +27,7 @@ public class TokenManager {
         return (StudentEntity) get("student");
     }
     public static void studentLogin(StudentEntity student){
+        logout();
         save("student",student);
     }
     public static void studentLogout(){
