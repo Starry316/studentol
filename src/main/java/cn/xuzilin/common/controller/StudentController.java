@@ -36,7 +36,7 @@ public class StudentController {
      */
     @PostMapping("/login")
     public MessageVo login(@RequestParam("password")String password,
-                            @RequestParam("studentId")String studentId){
+                            @RequestParam("stu_no")String studentId){
         //先登录教务系统获取学生姓名，姓名为空为登录失败
         String studentName = studentService.checkAccount(studentId,password);
         if (studentName == null){

@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @RestController
 public class TestController {
-    @PostMapping("/hello")
+    @GetMapping("/hello")
     public String hello(){
         return "hello";
     }
