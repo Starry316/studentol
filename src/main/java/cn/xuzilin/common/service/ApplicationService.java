@@ -79,4 +79,7 @@ public class ApplicationService {
             return 1;
         }
     }
+    public ApplicationEntity getBySno(String sno){
+        return mapper.selectBySid(sno);
+    }
 }

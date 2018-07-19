@@ -3,6 +3,7 @@ package cn.xuzilin.common.controller;
 import cn.xuzilin.common.consts.ConstPool;
 import cn.xuzilin.common.po.ApplicationEntity;
 import cn.xuzilin.common.po.StudentEntity;
+import cn.xuzilin.common.service.ApplicationService;
 import cn.xuzilin.common.service.StudentService;
 import cn.xuzilin.common.service.TaskService;
 import cn.xuzilin.common.utils.ResponesUtil;
@@ -27,6 +28,8 @@ public class StudentController {
     private StudentService studentService;
     @Resource
     private TaskService taskService;
+    @Resource
+    private ApplicationService applicationService;
 
     /**
      * 登录
@@ -112,6 +115,19 @@ public class StudentController {
         }catch (Exception e){
             return ResponesUtil.systemError(e.getMessage());
         }
+        return ResponesUtil.success("success",respData);
+    }
+
+    @GetMapping("/api/v1/form")
+    public MessageVo getForm(){
+        StudentEntity student = TokenManager.getStudentToken();
+        if (student == null)
+            return ResponesUtil.systemError("登录信息失效，请重新登录");
+        ApplicationEntity application = applicationService.getBySno(student.getStudent_id());
+        JSONObject respData = new JSONObject();
+        respData.put("intention",application.getIntention());
+        respData.put("intention2",application.getIntention2());
+        respData.put("introduction",application.getIntroduction());
         return ResponesUtil.success("success",respData);
     }
 
