@@ -3,18 +3,18 @@
 <mapper namespace="cn.xuzilin.common.dao.ApplicationEntityMapper">
   <resultMap id="BaseResultMap" type="cn.xuzilin.common.po.ApplicationEntity">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="intention" jdbcType="VARCHAR" property="intention" />
+    <result column="intention" jdbcType="INTEGER" property="intention" />
     <result column="sign_time" jdbcType="TIMESTAMP" property="sign_time" />
-    <result column="intention2" jdbcType="VARCHAR" property="intention2" />
-    <result column="student_id" jdbcType="VARCHAR" property="student_id" />
-    <result column="stage" jdbcType="VARCHAR" property="stage" />
-    <result column="stage2" jdbcType="VARCHAR" property="stage2" />
+    <result column="intention2" jdbcType="INTEGER" property="intention2" />
+    <result column="sid" jdbcType="INTEGER" property="sid" />
+    <result column="stage" jdbcType="INTEGER" property="stage" />
+    <result column="stage2" jdbcType="INTEGER" property="stage2" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="cn.xuzilin.common.po.ApplicationEntity">
     <result column="introduction" jdbcType="LONGVARCHAR" property="introduction" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, intention, sign_time, intention2, student_id, stage, stage2
+    id, intention, sign_time, intention2, sid, stage, stage2
   </sql>
   <sql id="Blob_Column_List">
     introduction
@@ -33,11 +33,11 @@
   </delete>
   <insert id="insert" parameterType="cn.xuzilin.common.po.ApplicationEntity">
     insert into application (id, intention, sign_time, 
-      intention2, student_id, stage, 
+      intention2, sid, stage, 
       stage2, introduction)
-    values (#{id,jdbcType=INTEGER}, #{intention,jdbcType=VARCHAR}, #{sign_time,jdbcType=TIMESTAMP}, 
-      #{intention2,jdbcType=VARCHAR}, #{student_id,jdbcType=VARCHAR}, #{stage,jdbcType=VARCHAR}, 
-      #{stage2,jdbcType=VARCHAR}, #{introduction,jdbcType=LONGVARCHAR})
+    values (#{id,jdbcType=INTEGER}, #{intention,jdbcType=INTEGER}, #{sign_time,jdbcType=TIMESTAMP}, 
+      #{intention2,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}, #{stage,jdbcType=INTEGER}, 
+      #{stage2,jdbcType=INTEGER}, #{introduction,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.xuzilin.common.po.ApplicationEntity">
     insert into application
@@ -54,8 +54,8 @@
       <if test="intention2 != null">
         intention2,
       </if>
-      <if test="student_id != null">
-        student_id,
+      <if test="sid != null">
+        sid,
       </if>
       <if test="stage != null">
         stage,
@@ -72,22 +72,22 @@
         #{id,jdbcType=INTEGER},
       </if>
       <if test="intention != null">
-        #{intention,jdbcType=VARCHAR},
+        #{intention,jdbcType=INTEGER},
       </if>
       <if test="sign_time != null">
         #{sign_time,jdbcType=TIMESTAMP},
       </if>
       <if test="intention2 != null">
-        #{intention2,jdbcType=VARCHAR},
+        #{intention2,jdbcType=INTEGER},
       </if>
-      <if test="student_id != null">
-        #{student_id,jdbcType=VARCHAR},
+      <if test="sid != null">
+        #{sid,jdbcType=INTEGER},
       </if>
       <if test="stage != null">
-        #{stage,jdbcType=VARCHAR},
+        #{stage,jdbcType=INTEGER},
       </if>
       <if test="stage2 != null">
-        #{stage2,jdbcType=VARCHAR},
+        #{stage2,jdbcType=INTEGER},
       </if>
       <if test="introduction != null">
         #{introduction,jdbcType=LONGVARCHAR},
@@ -98,22 +98,22 @@
     update application
     <set>
       <if test="intention != null">
-        intention = #{intention,jdbcType=VARCHAR},
+        intention = #{intention,jdbcType=INTEGER},
       </if>
       <if test="sign_time != null">
         sign_time = #{sign_time,jdbcType=TIMESTAMP},
       </if>
       <if test="intention2 != null">
-        intention2 = #{intention2,jdbcType=VARCHAR},
+        intention2 = #{intention2,jdbcType=INTEGER},
       </if>
-      <if test="student_id != null">
-        student_id = #{student_id,jdbcType=VARCHAR},
+      <if test="sid != null">
+        sid = #{sid,jdbcType=INTEGER},
       </if>
       <if test="stage != null">
-        stage = #{stage,jdbcType=VARCHAR},
+        stage = #{stage,jdbcType=INTEGER},
       </if>
       <if test="stage2 != null">
-        stage2 = #{stage2,jdbcType=VARCHAR},
+        stage2 = #{stage2,jdbcType=INTEGER},
       </if>
       <if test="introduction != null">
         introduction = #{introduction,jdbcType=LONGVARCHAR},
@@ -123,23 +123,23 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="cn.xuzilin.common.po.ApplicationEntity">
     update application
-    set intention = #{intention,jdbcType=VARCHAR},
+    set intention = #{intention,jdbcType=INTEGER},
       sign_time = #{sign_time,jdbcType=TIMESTAMP},
-      intention2 = #{intention2,jdbcType=VARCHAR},
-      student_id = #{student_id,jdbcType=VARCHAR},
-      stage = #{stage,jdbcType=VARCHAR},
-      stage2 = #{stage2,jdbcType=VARCHAR},
+      intention2 = #{intention2,jdbcType=INTEGER},
+      sid = #{sid,jdbcType=INTEGER},
+      stage = #{stage,jdbcType=INTEGER},
+      stage2 = #{stage2,jdbcType=INTEGER},
       introduction = #{introduction,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.xuzilin.common.po.ApplicationEntity">
     update application
-    set intention = #{intention,jdbcType=VARCHAR},
+    set intention = #{intention,jdbcType=INTEGER},
       sign_time = #{sign_time,jdbcType=TIMESTAMP},
-      intention2 = #{intention2,jdbcType=VARCHAR},
-      student_id = #{student_id,jdbcType=VARCHAR},
-      stage = #{stage,jdbcType=VARCHAR},
-      stage2 = #{stage2,jdbcType=VARCHAR}
+      intention2 = #{intention2,jdbcType=INTEGER},
+      sid = #{sid,jdbcType=INTEGER},
+      stage = #{stage,jdbcType=INTEGER},
+      stage2 = #{stage2,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
