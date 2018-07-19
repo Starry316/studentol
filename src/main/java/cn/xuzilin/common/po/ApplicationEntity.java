@@ -5,17 +5,17 @@ import java.util.Date;
 public class ApplicationEntity {
     private Integer id;
 
-    private Integer intention;
+    private String intention;
 
     private Date sign_time;
 
-    private Integer intention2;
+    private String intention2;
 
-    private Integer sid;
+    private String student_id;
 
-    private Integer stage;
+    private String stage;
 
-    private Integer stage2;
+    private String stage2;
 
     private String introduction;
 
@@ -27,12 +27,12 @@ public class ApplicationEntity {
         this.id = id;
     }
 
-    public Integer getIntention() {
+    public String getIntention() {
         return intention;
     }
 
-    public void setIntention(Integer intention) {
-        this.intention = intention;
+    public void setIntention(String intention) {
+        this.intention = intention == null ? null : intention.trim();
     }
 
     public Date getSign_time() {
@@ -43,36 +43,36 @@ public class ApplicationEntity {
         this.sign_time = sign_time;
     }
 
-    public Integer getIntention2() {
+    public String getIntention2() {
         return intention2;
     }
 
-    public void setIntention2(Integer intention2) {
-        this.intention2 = intention2;
+    public void setIntention2(String intention2) {
+        this.intention2 = intention2 == null ? null : intention2.trim();
     }
 
-    public Integer getSid() {
-        return sid;
+    public String getStudent_id() {
+        return student_id;
     }
 
-    public void setSid(Integer sid) {
-        this.sid = sid;
+    public void setStudent_id(String student_id) {
+        this.student_id = student_id == null ? null : student_id.trim();
     }
 
-    public Integer getStage() {
+    public String getStage() {
         return stage;
     }
 
-    public void setStage(Integer stage) {
-        this.stage = stage;
+    public void setStage(String stage) {
+        this.stage = stage == null ? null : stage.trim();
     }
 
-    public Integer getStage2() {
+    public String getStage2() {
         return stage2;
     }
 
-    public void setStage2(Integer stage2) {
-        this.stage2 = stage2;
+    public void setStage2(String stage2) {
+        this.stage2 = stage2 == null ? null : stage2.trim();
     }
 
     public String getIntroduction() {

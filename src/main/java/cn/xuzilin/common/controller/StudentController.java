@@ -109,9 +109,24 @@ public class StudentController {
         StudentEntity student = TokenManager.getStudentToken();
         if (student == null)
             return ResponesUtil.systemError("当前没有登录用户");
-        JSONArray jsonArray = taskService.getWork();
-        JSONObject respData = new JSONObject();
-        return ResponesUtil.success("success");
+        ApplicationEntity application = taskService.getAppsBySid(student.getStudent_id());
+        JSONArray respData  = new JSONArray();
+        //根据intention和用户信息获取作业信息
+        String intention = application.getIntention();
+        if (intention != null){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("intention",intention);
+            jsonObject.put("works",taskService.getWorkListByIntentionAndLocalSid(intention,student.getId()));
+            respData.add(jsonObject);
+        }
+        String intention2 = application.getIntention2();
+        if (intention2 != null){
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("intention",intention2);
+            jsonObject.put("works",taskService.getWorkListByIntentionAndLocalSid(intention2,student.getId()));
+            respData.add(jsonObject);
+        }
+        return ResponesUtil.success("success",respData);
     }
 
 

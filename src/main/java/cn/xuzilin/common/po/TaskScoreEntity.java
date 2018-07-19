@@ -3,17 +3,13 @@ package cn.xuzilin.common.po;
 public class TaskScoreEntity {
     private Integer id;
 
-    private Integer sid;
+    private Integer local_sid;
 
-    private Integer group;
+    private Integer task_id;
 
-    private Integer score1;
+    private Byte status;
 
-    private Integer score2;
-
-    private Integer score3;
-
-    private Integer score4;
+    private Integer score;
 
     public Integer getId() {
         return id;
@@ -23,51 +19,35 @@ public class TaskScoreEntity {
         this.id = id;
     }
 
-    public Integer getSid() {
-        return sid;
+    public Integer getLocal_sid() {
+        return local_sid;
     }
 
-    public void setSid(Integer sid) {
-        this.sid = sid;
+    public void setLocal_sid(Integer local_sid) {
+        this.local_sid = local_sid;
     }
 
-    public Integer getGroup() {
-        return group;
+    public Integer getTask_id() {
+        return task_id;
     }
 
-    public void setGroup(Integer group) {
-        this.group = group;
+    public void setTask_id(Integer task_id) {
+        this.task_id = task_id;
     }
 
-    public Integer getScore1() {
-        return score1;
+    public Byte getStatus() {
+        return status;
     }
 
-    public void setScore1(Integer score1) {
-        this.score1 = score1;
+    public void setStatus(Byte status) {
+        this.status = status;
     }
 
-    public Integer getScore2() {
-        return score2;
+    public Integer getScore() {
+        return score;
     }
 
-    public void setScore2(Integer score2) {
-        this.score2 = score2;
-    }
-
-    public Integer getScore3() {
-        return score3;
-    }
-
-    public void setScore3(Integer score3) {
-        this.score3 = score3;
-    }
-
-    public Integer getScore4() {
-        return score4;
-    }
-
-    public void setScore4(Integer score4) {
-        this.score4 = score4;
+    public void setScore(Integer score) {
+        this.score = score;
     }
 }

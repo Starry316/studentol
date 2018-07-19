@@ -17,9 +17,6 @@ public class ApplicationService {
     @Resource
     private StudentEntityMapper mapper2;
 
-    @Resource
-    private TaskService taskService;
-
     public void SignUp(ApplicationEntity application){
 
         ApplicationEntity applicationEntity = mapper.SelectId(application.getStudent_id());
@@ -39,9 +36,6 @@ public class ApplicationService {
     }
 
     public void ChangeStage(String id,String stage,String intention){
-        if (stage.equals("2")){//过面试
-
-        }
         mapper.ChangeStage(id,stage,intention);
         mapper.ChangeStage2(id,stage,intention);
     }

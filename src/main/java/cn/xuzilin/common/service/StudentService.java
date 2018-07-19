@@ -80,7 +80,7 @@ public class StudentService {
         data.put("id",student.getId());
         data.put("name",student.getStudent_name());
         data.put("sex",student.getSex());
-        data.put("stu_no",student.getStudent_id());
+        data.put("stu_no",student.getSex());
         data.put("campus",student.getCampus());
         data.put("academy",student.getAcademy());
         data.put("from",student.getFrom());
