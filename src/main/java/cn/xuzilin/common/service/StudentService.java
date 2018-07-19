@@ -9,6 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -80,7 +81,7 @@ public class StudentService {
         data.put("id",student.getId());
         data.put("name",student.getStudent_name());
         data.put("sex",student.getSex());
-        data.put("stu_no",student.getSex());
+        data.put("stu_no",student.getStudent_id());
         data.put("campus",student.getCampus());
         data.put("academy",student.getAcademy());
         data.put("from",student.getFrom());
@@ -118,5 +119,8 @@ public class StudentService {
         if (qq != null)
             student.setSex(qq);
         return studentMapper.updateByPrimaryKeySelective(student);
+    }
+    public StudentEntity getBySidCompus(int sid , int compus){
+        return studentMapper.selectBySidCampus(sid,compus);
     }
 }

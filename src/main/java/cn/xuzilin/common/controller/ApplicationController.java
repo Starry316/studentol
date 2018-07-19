@@ -2,7 +2,9 @@ package cn.xuzilin.common.controller;
 
 import cn.xuzilin.common.po.ApplicationEntity;
 import cn.xuzilin.common.po.StudentEntity;
+import cn.xuzilin.common.po.TaskScoreEntity;
 import cn.xuzilin.common.service.ApplicationService;
+import cn.xuzilin.common.service.TaskService;
 import cn.xuzilin.common.utils.ResponesUtil;
 import cn.xuzilin.common.vo.MessageVo;
 import cn.xuzilin.core.shiro.token.TokenManager;
@@ -20,7 +22,9 @@ public class ApplicationController {
     @Resource
     private ApplicationService ApplicationService;
 
-    @PostMapping("/form")
+    @Resource
+    private TaskService taskService;
+    @PostMapping("/api/v1/form")
     public MessageVo form(@RequestParam Map<String,String> map){
         ApplicationEntity application = new ApplicationEntity();
         StudentEntity student = TokenManager.getStudentToken();
@@ -40,7 +44,7 @@ public class ApplicationController {
         return ResponesUtil.success("success");
     }
 
-    @GetMapping("/process")
+    @GetMapping("/api/v1/process")
     public MessageVo process(){
         StudentEntity student = TokenManager.getStudentToken();
         ApplicationEntity application = ApplicationService.ReturnData(student);
@@ -56,8 +60,10 @@ public class ApplicationController {
         return ResponesUtil.success("success",jsonObject);
     }
 
-    @GetMapping("/info/get")
+    @GetMapping("/nxms/info/get")
     public MessageVo info_get(@RequestParam Map<String,String> map){
+        if (TokenManager.get("manager")==null)
+            return ResponesUtil.systemError("登录信息失效!");
         List<String> list = ApplicationService.ReturnByCampus(map.get("campus"));
         List<String> student_ids = new ArrayList<>();
         JSONArray jsonArray = new JSONArray();
@@ -91,14 +97,26 @@ public class ApplicationController {
         return ResponesUtil.success("success",jsonArray);
     }
 
-    @PostMapping("/info/manage")
+    @PostMapping("/nxms/info/manage")
     public  MessageVo info_manage(@RequestParam Map<String,String> map){
+        if (TokenManager.get("manager")==null)
+            return ResponesUtil.systemError("登录信息失效!");
+        //通过面试后创建task空记录
+        int sid = Integer.parseInt(map.get("id"));
+        int type = Integer.parseInt(map.get("type"));
+        int department = Integer.parseInt("department");
+        if (type == 2){
+            taskService.create(sid,department);
+        }
+        //TODO 这里有问题需要修改
         ApplicationService.ChangeStage(map.get("id"),map.get("type"),map.get("department"));
         return ResponesUtil.success("success");
     }
 
-    @PostMapping("/info/add")
+    @PostMapping("/nxms/info/add")
     public MessageVo info_add(@RequestParam Map<String,String> map){
+        if (TokenManager.get("manager")==null)
+            return ResponesUtil.systemError("登录信息失效!");
         StudentEntity studentEntity = new StudentEntity();
         ApplicationEntity applicationEntity = new ApplicationEntity();
         studentEntity.setStudent_name(map.get("name"));

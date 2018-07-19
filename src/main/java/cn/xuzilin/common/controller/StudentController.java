@@ -34,7 +34,7 @@ public class StudentController {
      * @param studentId
      * @return
      */
-    @PostMapping("/login")
+    @PostMapping("/api/v1/login")
     public MessageVo login(@RequestParam("password")String password,
                             @RequestParam("stu_no")String studentId){
         //先登录教务系统获取学生姓名，姓名为空为登录失败
@@ -53,7 +53,7 @@ public class StudentController {
      * 注销
      * @return
      */
-    @PostMapping("/logout")
+    @PostMapping("/api/v1/logout")
     public MessageVo logout(){
         if (TokenManager.getStudentToken() != null)
             TokenManager.studentLogout();
@@ -64,7 +64,7 @@ public class StudentController {
      * 获取用户信息
      * @return 当前登录的用户信息
      */
-    @GetMapping("/user")
+    @GetMapping("/api/v1/user")
     public MessageVo user(){
         StudentEntity student = TokenManager.getStudentToken();
         if (student == null)
@@ -78,7 +78,7 @@ public class StudentController {
      * @param map
      * @return
      */
-    @PostMapping("/user")
+    @PostMapping("/api/v1/user")
     public MessageVo updateUser(@RequestParam Map<String , String > map){
         StudentEntity student = TokenManager.getStudentToken();
         if (student == null)
@@ -95,7 +95,7 @@ public class StudentController {
      * 获取ddl
      * @return
      */
-    @GetMapping("/deadline")
+    @GetMapping("/api/v1/deadline")
     public MessageVo deadline(){
         return ResponesUtil.success("success", ConstPool.DDL);
     }
@@ -104,27 +104,13 @@ public class StudentController {
      * 获取试用期内作业完成情况
      * @return
      */
-    @GetMapping("/work")
+    @GetMapping("/api/v1/work")
     public MessageVo work(){
-        StudentEntity student = TokenManager.getStudentToken();
-        if (student == null)
-            return ResponesUtil.systemError("当前没有登录用户");
-        ApplicationEntity application = taskService.getAppsBySid(student.getStudent_id());
-        JSONArray respData  = new JSONArray();
-        //根据intention和用户信息获取作业信息
-        String intention = application.getIntention();
-        if (intention != null){
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("intention",intention);
-            jsonObject.put("works",taskService.getWorkListByIntentionAndLocalSid(intention,student.getId()));
-            respData.add(jsonObject);
-        }
-        String intention2 = application.getIntention2();
-        if (intention2 != null){
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("intention",intention2);
-            jsonObject.put("works",taskService.getWorkListByIntentionAndLocalSid(intention2,student.getId()));
-            respData.add(jsonObject);
+        JSONArray respData;
+        try{
+            respData =taskService.getWork();
+        }catch (Exception e){
+            return ResponesUtil.systemError(e.getMessage());
         }
         return ResponesUtil.success("success",respData);
     }

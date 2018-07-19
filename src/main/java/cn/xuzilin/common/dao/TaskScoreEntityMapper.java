@@ -1,6 +1,5 @@
 package cn.xuzilin.common.dao;
 
-import cn.xuzilin.common.po.TaskEntity;
 import cn.xuzilin.common.po.TaskScoreEntity;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -19,9 +18,18 @@ public interface TaskScoreEntityMapper {
     int updateByPrimaryKeySelective(TaskScoreEntity record);
 
     int updateByPrimaryKey(TaskScoreEntity record);
+    @Select("select * from task_score where sid = #{sid}")
+    List<TaskScoreEntity> getBySid(@Param("sid") int sid);
 
-    @Select("SELECT * FROM task_score WHERE task_id = #{tid} AND local_sid = #{sid}")
-    TaskScoreEntity selectByTidAndLocalSid(@Param("tid") int tid,@Param("sid")int localSid);
-//    @Select("SELECT * From task_score WHERE intention = #{intention} AND local_sid = #{sid}")
-//    TaskEntity selectByIntentionAndSid(@Param("intention") String intention, @Param("sid") int localSid);
+    /**
+     * 获取某个报了个某个事业群的人的作业信息
+     * @param sg
+     * @param bg
+     * @return
+     */
+    @Select("select * from task_score where sid = #{sid} and group between #{sg} and #{bg}")
+    List<TaskScoreEntity> getBySidAndGroup(@Param("sid")int sid,@Param("sg") int sg,@Param("bg") int bg);
+
+    @Select("select * from task_score where group between #{sg} and #{bg}")
+    List<TaskScoreEntity> getByGroup(@Param("sg") int sg,@Param("bg") int bg);
 }

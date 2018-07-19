@@ -5,7 +5,7 @@ package cn.xuzilin.common.consts;
  */
 public class ConstPool {
 
-    public static String DDL = "";
+    public static String DDL = "2018-09-16T02:33:43.108+0000";
     //校区代号 campus
     public static final String ZHONGXIN = "0";
     public static final String HONGJIALOU = "1";
@@ -37,4 +37,6 @@ public class ConstPool {
     public static final String yiban_shenghuofuwu = "50";
     public static final String yiban_pintaiyunying = "51";
     public static final String yiban_gongguantuiguang = "52";
+
+    public static final String TOKEN = "token";
 }
