@@ -25,7 +25,7 @@ public class ApplicationController {
     @Resource
     private TaskService taskService;
     @PostMapping("/api/v1/form")
-    public MessageVo form(@RequestParam Map<String,String> map){
+    public MessageVo form(@RequestBody Map<String,String> map){
         ApplicationEntity application = new ApplicationEntity();
         StudentEntity student = TokenManager.getStudentToken();
         application.setStudent_id(student.getStudent_id());

@@ -75,7 +75,7 @@ public class BackController {
     }
     @PostMapping("/nxms/login")
     public MessageVo login(@RequestParam("token") String token){
-        if (token == ConstPool.TOKEN){
+        if (token .equals(ConstPool.TOKEN)){
             TokenManager.save("manager",token);
             return ResponesUtil.success("success","success");
         }
