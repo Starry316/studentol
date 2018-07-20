@@ -61,7 +61,7 @@ public class ApplicationService {
     }
 
     public int IsStudentExist(StudentEntity student,String student_id){
-        StudentEntity studentEntity = mapper2.selectBySid(student_id);
+        StudentEntity studentEntity = mapper2.selectBySno(student_id);
         if (studentEntity!=null)
             return 0;
         else {

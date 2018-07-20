@@ -19,9 +19,9 @@ public interface StudentEntityMapper {
 
     int updateByPrimaryKey(StudentEntity record);
 
-    @Select("SELECT * FROM student WHERE  student_id = #{sid}")
-    StudentEntity selectBySid(@Param("sid") String sid);
+    @Select("SELECT * FROM student WHERE  student_id = #{sno}")
+    StudentEntity selectBySno(@Param("sno") String sno);
 
     @Select("SELECT * FROM student WHERE  id = #{sid} AND campus = #{campus}")
-    StudentEntity selectBySidCampus(@Param("sid") int sid ,@Param("campus")  int campus);
+    StudentEntity selectBySidCampus(@Param("sid") int sid ,@Param("campus") String campus);
 }

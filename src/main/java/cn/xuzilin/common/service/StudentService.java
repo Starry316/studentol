@@ -120,7 +120,10 @@ public class StudentService {
             student.setSex(qq);
         return studentMapper.updateByPrimaryKeySelective(student);
     }
+    public StudentEntity getById(int sid){
+        return studentMapper.selectByPrimaryKey(sid);
+    }
     public StudentEntity getBySidCompus(int sid , int compus){
-        return studentMapper.selectBySidCampus(sid,compus);
+        return studentMapper.selectBySidCampus(sid,compus+"");
     }
 }

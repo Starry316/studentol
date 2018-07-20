@@ -70,8 +70,10 @@ public class StudentController {
     @GetMapping("/api/v1/user")
     public MessageVo user(){
         StudentEntity student = TokenManager.getStudentToken();
+
         if (student == null)
             return ResponesUtil.systemError("目前没有登录用户！");
+        student = studentService.getById(student.getId());
         JSONObject respData = studentService.toLphReqJSONData(student);
         return ResponesUtil.success("success",respData);
     }
