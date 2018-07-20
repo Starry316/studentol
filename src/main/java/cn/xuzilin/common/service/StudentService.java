@@ -114,7 +114,7 @@ public class StudentService {
             student.setFrom(from);
         String tel = map.get("tel");
         if (tel != null)
-            student.setFrom(tel);
+            student.setPhone_number(tel);
         String qq = map.get("qq");
         if (qq != null)
             student.setSex(qq);
