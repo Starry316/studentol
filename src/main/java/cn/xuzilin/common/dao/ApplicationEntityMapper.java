@@ -47,13 +47,16 @@ public interface ApplicationEntityMapper {
     @Select("Select * from student where student_id = #{student_id}")
     StudentEntity StudentInfo(@Param("student_id") String student_id);
 
+    @Select("Select * from student where id = #{id}")
+    StudentEntity StudentInfoById(@Param("id") String id);
+
     @Select("Select * from application where student_id = #{student_id}")
     ApplicationEntity ApplicationInfo(@Param("student_id") String student_id);
 
-    @Update("Update application set stage = #{stage} where id = #{id} and intention = #{intention}")
-    void ChangeStage(@Param("id") String id,@Param("stage") String stage,@Param("intention") String intention);
+    @Update("Update application set stage = #{stage} where student_id = #{student_id} and intention = #{intention}")
+    void ChangeStage(@Param("student_id") String id,@Param("stage") String stage,@Param("intention") String intention);
 
-    @Update("Update application set stage2=#{stage2} where id = #{id} and intention2 = #{intention2}")
-    void ChangeStage2(@Param("id") String id,@Param("stage2") String stage2,@Param("intention2") String intention2);
+    @Update("Update application set stage2=#{stage2} where student_id = #{student_id} and intention2 = #{intention2}")
+    void ChangeStage2(@Param("student_id") String id,@Param("stage2") String stage2,@Param("intention2") String intention2);
 
 }

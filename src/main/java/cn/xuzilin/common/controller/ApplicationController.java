@@ -53,8 +53,8 @@ public class ApplicationController {
         jsonObject1.put("intention",application.getIntention());
         jsonObject1.put("stage",application.getStage());
         JSONObject jsonObject2 = new JSONObject();
-        jsonObject2.put("intention2",application.getIntention2());
-        jsonObject2.put("stage2",application.getStage2());
+        jsonObject2.put("intention",application.getIntention2());
+        jsonObject2.put("stage",application.getStage2());
         jsonObject.add(jsonObject1);
         jsonObject.add(jsonObject2);
         return ResponesUtil.success("success",jsonObject);
@@ -74,7 +74,7 @@ public class ApplicationController {
             StudentEntity studentEntity = ApplicationService.StudentInfo(student_id);
             ApplicationEntity applicationEntity = ApplicationService.ApplicationInfo(student_id);
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("id",applicationEntity.getId());
+            jsonObject.put("id",studentEntity.getId());
             jsonObject.put("name",studentEntity.getStudent_name());
             jsonObject.put("sex",studentEntity.getSex());
             jsonObject.put("stu_no",studentEntity.getStudent_id());

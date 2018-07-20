@@ -36,8 +36,9 @@ public class ApplicationService {
     }
 
     public void ChangeStage(String id,String stage,String intention){
-        mapper.ChangeStage(id,stage,intention);
-        mapper.ChangeStage2(id,stage,intention);
+        StudentEntity studentEntity = mapper.StudentInfoById(id);
+        mapper.ChangeStage(studentEntity.getStudent_id(),stage,intention);
+        mapper.ChangeStage2(studentEntity.getStudent_id(),stage,intention);
     }
 
     public List ReturnByCampus(String campus){
