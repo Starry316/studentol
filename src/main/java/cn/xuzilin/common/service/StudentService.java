@@ -26,7 +26,7 @@ public class StudentService {
      * @param student
      */
     public void login(StudentEntity student){
-        StudentEntity found = studentMapper.selectBySid(student.getStudent_id());
+        StudentEntity found = studentMapper.selectBySno(student.getStudent_id());
         if (found == null)
             studentMapper.insert(student);
         else
