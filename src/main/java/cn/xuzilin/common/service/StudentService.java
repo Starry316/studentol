@@ -117,7 +117,7 @@ public class StudentService {
             student.setPhone_number(tel);
         String qq = map.get("qq");
         if (qq != null)
-            student.setSex(qq);
+            student.setQq(qq);
         return studentMapper.updateByPrimaryKeySelective(student);
     }
     public StudentEntity getById(int sid){
