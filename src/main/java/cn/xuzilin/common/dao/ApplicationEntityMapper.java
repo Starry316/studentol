@@ -42,7 +42,36 @@ public interface ApplicationEntityMapper {
 
     @Select("Select student_id from application where student_id = #{student_id} and " +
             "((intention=#{intention} and stage=#{stage}) or (intention2=#{intention} and stage2=#{stage}))")
-    String Select(@Param("student_id") String student_id,@Param("intention") String intention,@Param("stage") String stage);
+    String SelectBy134(@Param("student_id") String student_id,@Param("intention") String intention,@Param("stage") String stage);
+
+    @Select("Select student_id from application where student_id = #{student_id} and (intention=#{intention} or intention2=#{intention})")
+    String SelectBy13(@Param("student_id") String student_id,@Param("intention") String intention);
+
+    @Select("Select student_id from application where student_id = #{student_id} and (stage = #{stage} or stage2 = #{stage})")
+    String SelectBy14(@Param("student_id") String student_id,@Param("stage") String stage);
+
+    @Select("Select student_id from application where student_id = #{student_id} and " +
+            "((intention like \"\"#{group}\"%\" and stage=#{stage}) or (intention2 like \"\"#{group}\"%\" and stage2=#{stage}))")
+    String SelectBy124(@Param("student_id") String student_id,@Param("group") String group,@Param("stage") String stage);
+
+    @Select("Select student_id from application where student_id = #{student_id} and " +
+            "(intention like \"\"#{group}\"%\" or intention2 like \"\"#{group}\"%\")")
+    String SelectBy12(@Param("student_id") String student_id,@Param("group") String group);
+
+    @Select("Select student_id from application where (intention=#{intention} and stage=#{stage}) or (intention2=#{intention} and stage2=#{stage})")
+    List<String> SelectBy34(@Param("intention") String intention,@Param("stage") String stage);
+
+    @Select("Select student_id from application where intention=#{intention} or intention2=#{intention}")
+    List<String> SelectBy3(@Param("intention") String intention);
+
+    @Select("Select student_id from application where (intention like \"\"#{group}\"%\" and stage=#{stage}) or (intention2 like \"\"#{group}\"%\" and stage2=#{stage})")
+    List<String> SelectBy24(@Param("group") String group,@Param("stage") String stage);
+
+    @Select("Select student_id from application where intention like \"\"#{group}\"%\" or intention2 like \"\"#{group}\"%\"")
+    List<String> SelectBy2(@Param("group") String group);
+
+    @Select("Select student_id from application where stage=#{stage} or stage2=#{stage}")
+    List<String> SelectBy4(@Param("stage") String stage);
 
     @Select("Select * from student where student_id = #{student_id}")
     StudentEntity StudentInfo(@Param("student_id") String student_id);

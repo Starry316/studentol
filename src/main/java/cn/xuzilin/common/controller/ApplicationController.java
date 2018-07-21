@@ -64,36 +64,81 @@ public class ApplicationController {
     public MessageVo info_get(@RequestParam Map<String,String> map){
         if (TokenManager.get("manager")==null)
             return ResponesUtil.systemError("登录信息失效!");
-        List<String> list = ApplicationService.ReturnByCampus(map.get("campus"));
-        List<String> student_ids = new ArrayList<>();
         JSONArray jsonArray = new JSONArray();
-        for (String student_id : list){
-            student_ids.add(ApplicationService.ReturnId(student_id,map.get("department"),map.get("stage")));
+        if (map.get("campus")!=null) {
+            List<String> list = ApplicationService.ReturnByCampus(map.get("campus"));
+            List<String> student_ids = new ArrayList<>();
+            if (map.get("department") != null) {
+                if (map.get("stage") != null) {
+                    for (String student_id : list) {
+                        student_ids.add(ApplicationService.ReturnId134(student_id, map.get("department"), map.get("stage")));
+                    }
+                    jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                } else {
+                    for (String student_id : list) {
+                        student_ids.add(ApplicationService.ReturnId13(student_id, map.get("department")));
+                    }
+                    jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                }
+            } else {
+                if (map.get("group") != null) {
+                    if (map.get("stage") != null) {
+                        for (String student_id : list) {
+                            student_ids.add(ApplicationService.ReturnId124(student_id, map.get("group"), map.get("stage")));
+                        }
+                        jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                    } else {
+                        for (String student_id : list) {
+                            student_ids.add(ApplicationService.ReturnId12(student_id, map.get("group")));
+                        }
+                        jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                    }
+
+                } else {
+                    if (map.get("stage") != null) {
+                        for (String student_id : list) {
+                            student_ids.add(ApplicationService.ReturnId14(student_id, map.get("stage")));
+                        }
+                        jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                    } else {
+                        jsonArray = ApplicationService.ReturnJSONArray(list);
+                    }
+                }
+
+            }
         }
-        for (String student_id : student_ids){
-            StudentEntity studentEntity = ApplicationService.StudentInfo(student_id);
-            ApplicationEntity applicationEntity = ApplicationService.ApplicationInfo(student_id);
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("id",studentEntity.getId());
-            jsonObject.put("name",studentEntity.getStudent_name());
-            jsonObject.put("sex",studentEntity.getSex());
-            jsonObject.put("stu_no",studentEntity.getStudent_id());
-            jsonObject.put("campus",studentEntity.getCampus());
-            jsonObject.put("academy",studentEntity.getAcademy());
-            jsonObject.put("from",studentEntity.getFrom());
-            String[] intentions = new String[2];
-            intentions[0]=applicationEntity.getIntention();
-            intentions[1]=applicationEntity.getIntention2();
-            jsonObject.put("department",intentions);
-            jsonObject.put("tel",studentEntity.getPhone_number());
-            jsonObject.put("qq",studentEntity.getQq());
-            String[] stages = new String[2];
-            stages[0] = applicationEntity.getStage();
-            stages[1] = applicationEntity.getStage2();
-            jsonObject.put("stage",stages);
-            jsonObject.put("introduction",applicationEntity.getIntroduction());
-            jsonArray.add(jsonObject);
+    else {
+            List<String> student_ids;
+            if (map.get("department")!=null){
+                if (map.get("stage")!=null){
+                    student_ids = ApplicationService.ReturnId34(map.get("department"),map.get("stage"));
+                    jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                }
+                else {
+                    student_ids = ApplicationService.ReturnId3(map.get("department"));
+                    jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                }
+            }
+            else {
+                if (map.get("group")!=null){
+                    if (map.get("stage")!=null){
+                        student_ids = ApplicationService.ReturnId24(map.get("group"),map.get("stage"));
+                        jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                    }
+                    else {
+                        student_ids = ApplicationService.ReturnId2(map.get("group"));
+                        jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                    }
+                }
+                else {
+                    if (map.get("stage")!=null){
+                        student_ids = ApplicationService.ReturnId4(map.get("stage"));
+                        jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                    }
+                }
+            }
         }
+
         return ResponesUtil.success("success",jsonArray);
     }
 
