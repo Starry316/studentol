@@ -175,7 +175,7 @@ public class ApplicationController {
         studentEntity.setQq(map.get("qq"));
         applicationEntity.setStudent_id(map.get("stu_no"));
         applicationEntity.setIntention(map.get("department1"));
-        applicationEntity.setIntention(map.get("department2"));
+        applicationEntity.setIntention2(map.get("department2"));
         applicationEntity.setIntroduction(map.get("introduction"));
         Date date = new Date();
         applicationEntity.setSign_time(date);
