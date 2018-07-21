@@ -87,7 +87,7 @@
         sid = #{sid,jdbcType=INTEGER},
       </if>
       <if test="group != null">
-        group = #{group,jdbcType=INTEGER},
+        `group` = #{group,jdbcType=INTEGER},
       </if>
       <if test="score1 != null">
         score1 = #{score1,jdbcType=INTEGER},
@@ -107,7 +107,7 @@
   <update id="updateByPrimaryKey" parameterType="cn.xuzilin.common.po.TaskScoreEntity">
     update task_score
     set sid = #{sid,jdbcType=INTEGER},
-      group = #{group,jdbcType=INTEGER},
+      `group` = #{group,jdbcType=INTEGER},
       score1 = #{score1,jdbcType=INTEGER},
       score2 = #{score2,jdbcType=INTEGER},
       score3 = #{score3,jdbcType=INTEGER},

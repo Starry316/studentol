@@ -24,4 +24,7 @@ public interface StudentEntityMapper {
 
     @Select("SELECT * FROM student WHERE  id = #{sid} AND campus = #{campus}")
     StudentEntity selectBySidCampus(@Param("sid") int sid ,@Param("campus") String campus);
+
+    @Select("SELECT * FROM student WHERE  student_name like \"\"#{sno}\"%\"")
+    StudentEntity likeBySno(@Param("sno") String sno);
 }

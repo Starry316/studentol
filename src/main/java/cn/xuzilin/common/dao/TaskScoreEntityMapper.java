@@ -27,9 +27,9 @@ public interface TaskScoreEntityMapper {
      * @param bg
      * @return
      */
-    @Select("select * from task_score where sid = #{sid} and group between #{sg} and #{bg}")
+    @Select("select * from task_score where sid = #{sid} and `group` >= #{sg} and `group` < #{bg}")
     List<TaskScoreEntity> getBySidAndGroup(@Param("sid")int sid,@Param("sg") int sg,@Param("bg") int bg);
 
-    @Select("select * from task_score where group between #{sg} and #{bg}")
+    @Select("select * from task_score where `group` >= #{sg} and `group` < #{bg}")
     List<TaskScoreEntity> getByGroup(@Param("sg") int sg,@Param("bg") int bg);
 }

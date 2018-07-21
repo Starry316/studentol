@@ -5,6 +5,7 @@ import cn.xuzilin.common.po.StudentEntity;
 import cn.xuzilin.common.po.TaskScoreEntity;
 import cn.xuzilin.common.service.StudentService;
 import cn.xuzilin.common.service.TaskService;
+import cn.xuzilin.common.utils.LoggerUtil;
 import cn.xuzilin.common.utils.ResponesUtil;
 import cn.xuzilin.common.vo.MessageVo;
 import cn.xuzilin.core.shiro.token.TokenManager;
@@ -15,6 +16,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,12 +30,12 @@ public class BackController {
     @Resource
     private StudentService studentService;
     @PostMapping("/nxms/score")
-    public MessageVo score(@RequestParam Map<String,String> map){
+    public MessageVo score(@RequestBody Map<String,Object> map){
         if (TokenManager.get("manager")==null)
             return ResponesUtil.systemError("登录信息失效!");
-        int group = Integer.parseInt(map.get("group"));
-        String scores = map.get("scores");
-        JSONArray socreArray = JSON.parseArray(scores);
+        Integer group =  Integer.parseInt((String)map.get("group"));
+        System.out.println(group);
+        JSONArray socreArray = JSON.parseArray(JSON.toJSONString( map.get("scores")));
         for (int i=0;i<socreArray.size();i++){
             JSONObject jsonObject = socreArray.getJSONObject(i);
             int id = jsonObject.getInteger("id");
@@ -41,12 +43,13 @@ public class BackController {
             Integer s2 = jsonObject.getInteger("2");
             Integer s3 = jsonObject.getInteger("3");
             Integer s4 = jsonObject.getInteger("4");
+            System.out.println(s1+" "+s2+" "+s3+" "+s4);
             List<TaskScoreEntity> tskList = taskService.getBySidGroup(id,group);
             for (TaskScoreEntity  tsk:tskList){
                 if (s1!=null) tsk.setScore1(s1);
-                if (s2!=null) tsk.setScore1(s2);
-                if (s3!=null) tsk.setScore1(s3);
-                if (s4!=null) tsk.setScore1(s4);
+                if (s2!=null) tsk.setScore2(s2);
+                if (s3!=null) tsk.setScore3(s3);
+                if (s4!=null) tsk.setScore4(s4);
                 taskService.updateTaskScore(tsk);
             }
         }
