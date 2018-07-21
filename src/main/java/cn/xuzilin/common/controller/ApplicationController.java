@@ -149,7 +149,7 @@ public class ApplicationController {
         //通过面试后创建task空记录
         int sid = Integer.parseInt(map.get("id"));
         int type = Integer.parseInt(map.get("type"));
-        int department = Integer.parseInt("department");
+        int department = Integer.parseInt(map.get("department"));
         if (type == 2){
             taskService.create(sid,department);
         }
