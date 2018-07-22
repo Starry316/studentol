@@ -64,7 +64,7 @@ public interface ApplicationEntityMapper {
     @Select("Select student_id from application where intention=#{intention} or intention2=#{intention}")
     List<String> SelectBy3(@Param("intention") String intention);
 
-    @Select("Select student_id from application where (intention like \"\"#{group}\"%\" and stage=#{stage}) or (intention2 like \"\"#{group}\"%\" and stage2=#{stage})")
+    @Select("Select student_id from application where (intention like \"\"#{stage}\"%\' and stage=#{stage}) or (intention2 like \"\"#{group}\"%\" and stage2=#{stage})")
     List<String> SelectBy24(@Param("group") String group,@Param("stage") String stage);
 
     @Select("Select student_id from application where intention like \"\"#{group}\"%\" or intention2 like \"\"#{group}\"%\"")
@@ -88,4 +88,9 @@ public interface ApplicationEntityMapper {
     @Update("Update application set stage2=#{stage2} where student_id = #{student_id} and intention2 = #{intention2}")
     void ChangeStage2(@Param("student_id") String id,@Param("stage2") String stage2,@Param("intention2") String intention2);
 
+    @Select("Select student_id from application")
+    List<String> SelectAll();
+
+    @Select("Select student_id from application where student_id = #{student_id}")
+    String SelectByNone(@Param("student_id") String student_id);
 }

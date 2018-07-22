@@ -108,7 +108,7 @@ public class ApplicationController {
             }
         }
     else {
-            List<String> student_ids;
+            List<String> student_ids = new ArrayList<>();
             if (map.get("department")!=null){
                 if (map.get("stage")!=null){
                     student_ids = ApplicationService.ReturnId34(map.get("department"),map.get("stage"));
@@ -135,10 +135,16 @@ public class ApplicationController {
                         student_ids = ApplicationService.ReturnId4(map.get("stage"));
                         jsonArray = ApplicationService.ReturnJSONArray(student_ids);
                     }
+                    else {
+                        List<String> AllIds = ApplicationService.SelectAll();
+                        for (String id : AllIds) {
+                            student_ids.add(ApplicationService.SelectByNone(id));
+                        }
+                        jsonArray = ApplicationService.ReturnJSONArray(student_ids);
+                    }
                 }
             }
         }
-
         return ResponesUtil.success("success",jsonArray);
     }
 

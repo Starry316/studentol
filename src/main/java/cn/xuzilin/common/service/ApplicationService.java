@@ -101,6 +101,16 @@ public class ApplicationService {
         return student_id;
     }
 
+    public List<String> SelectAll(){
+        List<String> student_ids = mapper.SelectAll();
+        return student_ids;
+    }
+
+    public String SelectByNone(String id){
+        String student_id = mapper.SelectByNone(id);
+        return student_id;
+    }
+
     public JSONArray ReturnJSONArray(List<String> student_ids){
         JSONArray jsonArray = new JSONArray();
         for (String student_id : student_ids) {
