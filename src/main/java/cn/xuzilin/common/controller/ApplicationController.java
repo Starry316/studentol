@@ -164,37 +164,42 @@ public class ApplicationController {
             return ResponesUtil.systemError("登录信息失效!");
         StudentEntity studentEntity = new StudentEntity();
         ApplicationEntity applicationEntity = new ApplicationEntity();
-        studentEntity.setStudent_name(map.get("name"));
-        studentEntity.setSex(map.get("sex"));
-        studentEntity.setStudent_id(map.get("stu_no"));
-        studentEntity.setCampus(map.get("campus"));
-        studentEntity.setAcademy(map.get("academy"));
-        studentEntity.setFrom(map.get("from"));
-        studentEntity.setPhone_number(map.get("tel"));
-        studentEntity.setQq(map.get("qq"));
-        applicationEntity.setStudent_id(map.get("stu_no"));
-        applicationEntity.setIntention(map.get("department1"));
-        applicationEntity.setIntention2(map.get("department2"));
-        applicationEntity.setIntroduction(map.get("introduction"));
-        Date date = new Date();
-        applicationEntity.setSign_time(date);
-        if (applicationEntity.getIntention()!=null){
-            applicationEntity.setStage("1");
-        }
-        if (applicationEntity.getIntention2()!=null){
-            applicationEntity.setStage2("1");
-        }
+        if (map.get("stu_no")!=null){
+            studentEntity.setStudent_name(map.get("name"));
+            studentEntity.setSex(map.get("sex"));
+            studentEntity.setStudent_id(map.get("stu_no"));
+            studentEntity.setCampus(map.get("campus"));
+            studentEntity.setAcademy(map.get("academy"));
+            studentEntity.setFrom(map.get("from"));
+            studentEntity.setPhone_number(map.get("tel"));
+            studentEntity.setQq(map.get("qq"));
+            applicationEntity.setStudent_id(map.get("stu_no"));
+            applicationEntity.setIntention(map.get("department1"));
+            applicationEntity.setIntention2(map.get("department2"));
+            applicationEntity.setIntroduction(map.get("introduction"));
+            Date date = new Date();
+            applicationEntity.setSign_time(date);
+            if (applicationEntity.getIntention()!=null){
+                applicationEntity.setStage("1");
+            }
+            if (applicationEntity.getIntention2()!=null){
+                applicationEntity.setStage2("1");
+            }
 
-        int i = ApplicationService.IsStudentExist(studentEntity,studentEntity.getStudent_id());
-        int j = ApplicationService.IsSignUp(applicationEntity,applicationEntity.getStudent_id());
-        if (i ==0&&j==0)
-            return ResponesUtil.success("该学生已注册，已报名");
-        else if (i==0&&j==1)
-            return ResponesUtil.success("该学生已注册，报名成功");
-        else if (i==1&&j==0)
-            return ResponesUtil.success("该学生注册成功，已报名");
-        else
-            return ResponesUtil.success("该学生注册成功，报名成功");
+            int i = ApplicationService.IsStudentExist(studentEntity,studentEntity.getStudent_id());
+            int j = ApplicationService.IsSignUp(applicationEntity,applicationEntity.getStudent_id());
+            if (i ==0&&j==0)
+                return ResponesUtil.success("该学生已注册，已报名");
+            else if (i==0&&j==1)
+                return ResponesUtil.success("该学生已注册，报名成功");
+            else if (i==1&&j==0)
+                return ResponesUtil.success("该学生注册成功，已报名");
+            else
+                return ResponesUtil.success("该学生注册成功，报名成功");
+        }
+        else {
+            return ResponesUtil.systemError("学生学号为空，请重新检查");
+        }
     }
 
 }
