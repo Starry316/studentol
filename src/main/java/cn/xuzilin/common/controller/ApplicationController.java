@@ -156,10 +156,8 @@ public class ApplicationController {
         int sid = Integer.parseInt(map.get("id"));
         int type = Integer.parseInt(map.get("type"));
         int department = Integer.parseInt(map.get("department"));
-        if (type == 2){
-            taskService.create(sid,department);
-        }
-        //TODO 这里有问题需要修改
+        //更改task中的记录
+        taskService.changeTaskStage(sid,department,type);
         ApplicationService.ChangeStage(map.get("id"),map.get("type"),map.get("department"));
         return ResponesUtil.success("success");
     }

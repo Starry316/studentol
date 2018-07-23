@@ -93,6 +93,20 @@ public class TaskService {
         t.setSid(sid);
         taskScoreMapper.insertSelective(t);
     }
+    public void changeTaskStage(int sid ,int department,int type){
+        if (type == 2){
+            TaskScoreEntity taskScoreEntity = taskScoreMapper.getBySidAndDepartment(sid,department);
+            if (taskScoreEntity == null)
+                create(sid,department);
+        }
+        //如果面试挂了，删除数据库内的task记录
+        else if (type == 3){
+            TaskScoreEntity taskScoreEntity = taskScoreMapper.getBySidAndDepartment(sid,department);
+            if (taskScoreEntity!=null){
+                taskScoreMapper.deleteById(taskScoreEntity.getId());
+            }
+        }
+    }
 
     public void updateTaskScore(TaskScoreEntity taskScore){
         taskScoreMapper.updateByPrimaryKeySelective(taskScore);

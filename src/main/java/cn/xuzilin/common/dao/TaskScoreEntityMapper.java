@@ -1,6 +1,7 @@
 package cn.xuzilin.common.dao;
 
 import cn.xuzilin.common.po.TaskScoreEntity;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -32,4 +33,10 @@ public interface TaskScoreEntityMapper {
 
     @Select("select * from task_score where `group` >= #{sg} and `group` < #{bg}")
     List<TaskScoreEntity> getByGroup(@Param("sg") int sg,@Param("bg") int bg);
+
+    @Select("select * from task_score where sid = #{sid} and `group` = #{department}")
+    TaskScoreEntity getBySidAndDepartment(@Param("sid")int sid,@Param("department") int department);
+
+    @Delete("delete from  task_score where id = #{id}")
+    void deleteById(@Param("id")int id);
 }
