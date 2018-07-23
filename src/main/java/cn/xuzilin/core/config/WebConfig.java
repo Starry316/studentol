@@ -18,18 +18,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // 可以直接使用addResourceLocations 指定磁盘绝对路径，同样可以配置多个位置，注意路径写法需要加上file:
-//        registry.addResourceHandler("/mp3/**").addResourceLocations(getFilePath() + "mp3/");
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/page/**").addResourceLocations("classpath:/templates/page/");
-        registry.addResourceHandler("/back/**").addResourceLocations("classpath:/templates/back/");
+        registry.addResourceHandler("/page/**").addResourceLocations("classpath:/templates/");
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/page/success").setViewName("page/success");
-        registry.addViewController("/open/page/loginPage").setViewName("page/login");
-        registry.addViewController("/page/error").setViewName("info/error");
     }
 
     @Bean

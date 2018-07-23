@@ -33,7 +33,7 @@ public class BackController {
     public MessageVo score(@RequestBody Map<String,Object> map){
         if (TokenManager.get("manager")==null)
             return ResponesUtil.systemError("登录信息失效!");
-        Integer group =  Integer.parseInt((String)map.get("group"));
+        Integer group =  (Integer)map.get("group");
         System.out.println(group);
         JSONArray socreArray = JSON.parseArray(JSON.toJSONString( map.get("scores")));
         for (int i=0;i<socreArray.size();i++){
@@ -82,6 +82,6 @@ public class BackController {
             TokenManager.save("manager",token);
             return ResponesUtil.success("success","success");
         }
-        return ResponesUtil.systemError("fail","fail");
+        return ResponesUtil.success("fail","fail");
     }
 }

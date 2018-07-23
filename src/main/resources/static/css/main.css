@@ -1,0 +1,299 @@
+body {
+    background: #fff;
+}
+
+/* 头部开始 */
+header {
+    display: flex;
+    height: 61px;
+    background: #9b0d14;
+    align-items: center;
+}
+
+header .header-text{
+    color: #fff;
+    font-size: 18px;
+}
+
+.help {
+    align-content: flex-end;
+    /* margin-right: 28px; */
+    margin-left: auto;
+    margin-right: 28px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.help::before {
+	font-size: 16px;
+	font-family: FontAwesome;
+	height: auto;
+	content: "\f059";
+	font-weight: 300;
+    text-shadow: none;
+    margin-right: 6px;
+    margin-top: 2px;
+}
+/* 头部结束 */
+
+/* 导航栏部分开始 */
+main {
+    overflow: hidden;
+}
+
+.welcome {
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    transition: all 0.8s;
+}
+
+.welcome:hover {
+    transform: scale(1.5) rotate(360deg);
+}
+
+.side-nav {
+    float: left;
+    width: 190px;
+    background: #f2f2f2;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+    min-height: 660px;
+}
+
+.nav-item {
+    display: block;
+    height: 40px;
+    padding: 10px 15px;
+    font-weight: 300;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.arrow::before {
+	float: right;
+	margin-top: -2px;
+	margin-right: 5px;
+	font-size: 16px;
+	font-family: FontAwesome;
+	height: auto;
+	content: "\f104";
+	font-weight: 300;
+	text-shadow: none;
+}
+
+.arrow.open::before {
+    float: right;
+	margin-top: -2px;
+	margin-right: 5px;
+	font-size: 16px;
+	font-family: FontAwesome;
+	height: auto;
+	content: "\f107";
+	font-weight: 300;
+	text-shadow: none;
+}
+
+.divider {
+	height: 30px;
+	border: 1px #dedede solid;
+	line-height: 30px;
+	padding-left: 12px;
+	background: #fff;
+	color: #9b0d14;
+	font-weight: 400;
+}
+
+.divider a {
+    float: right;
+    margin-right: 12px;
+    cursor: pointer;
+    color: #23527c;
+}
+
+.divider a:hover {
+	color: #23527c;
+	text-decoration: underline;
+	background-color: transparent;
+}
+
+.sub-item {
+    display: block;
+    height: 30px;
+    padding: 10px 15px;
+    font-weight: 300;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: right;
+}
+
+.sub-item.selected {
+    color: #9b0d14;
+    font-weight: 600;
+}
+
+/* 导航栏部分结束 */
+
+/* 学生信息部分开始 */
+
+.page-main {
+    margin-left: 192px;
+    position: relative;
+}
+
+.content-info .tips {
+    background-color: #d9edf7;
+    padding: 10px 15px;
+    margin: 10px;
+    border:1px solid  #bce8f1;
+}
+
+.content-info .tips h3 {
+    color: red;
+    font-weight: bold;
+}
+
+.content-info .tips p {
+	color: #3a87ad;
+
+} 
+
+.content-info .table-container {
+    padding: 15px;
+}
+
+.content-info table {
+    width: 100%;
+}
+
+.content-info table th {
+    text-align: left;
+    width: auto;
+    background: url("../img/th_bg.png") repeat-x scroll 0% 0% #FFF
+}
+
+.content-info table td,th {
+    border: 1px solid #ddd;
+    padding: 2px 6px;
+}
+
+.content-info table button {
+    margin-left: 6px;
+}
+.content-info .details {
+    padding: 12px 16px;
+    background: #eee;
+    width: 300px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 200px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+}
+
+.content-info .details .close::before {
+    font-family: FontAwesome;
+    content: "\f00d";
+    float: right;
+    cursor: pointer;
+}
+
+/* 主体部分结束 */
+
+/* 数据录入部分开始 */
+.input-panel {
+	width: 300px;
+	margin: auto;
+	padding: 24px 16px;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+	margin-top: 60px;
+}
+
+.input-panel label,
+.input-panel input,
+.input-panel h2 {
+    display: block;
+    width: 200px;
+    margin: 2px auto 0 auto;
+}
+
+.input-panel h2 {
+	font-size: 20px;
+	border-bottom: 2px solid #ccc;
+	margin-bottom: 20px;
+}
+
+.input-panel label {
+    margin-top: 6px;
+}
+
+.input-panel button {
+	width: 200px;
+	margin: 24px auto 0 auto;
+	display: block;
+	height: 36px;
+}
+/* 数据录入部分结束 */
+
+/* 打分部分开始 */
+
+.content-input-score #submit-scores {
+    float: right;
+    width: 130px;
+}
+
+.content-input-score .controls {
+    padding: 10px 16px;
+}
+
+.content-input-score .tips {
+    background-color: #d9edf7;
+    padding: 10px 15px;
+    margin: 10px;
+    border:1px solid  #bce8f1;
+}
+
+.content-input-score .tips h3 {
+    color: red;
+    font-weight: bold;
+}
+
+.content-input-score .tips p {
+	color: #3a87ad;
+
+} 
+
+.content-input-score .table-container {
+    padding: 15px;
+}
+
+.content-input-score table {
+    width: 100%;
+}
+
+.content-input-score table th {
+    text-align: left;
+    width: auto;
+    background: url("../img/th_bg.png") repeat-x scroll 0% 0% #FFF
+}
+
+.content-input-score table td,th {
+    border: 1px solid #ddd;
+    padding: 2px 6px;
+}
+
+.content-input-score table button {
+    margin-left: 6px;
+}
+
+/* 打分部分结束 */
+
+/* 页尾开始 */
+footer {
+    background: #f2f2f2;
+    height: 30px;
+    padding-left: 28px;
+    line-height: 30px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+}
+
+/* 页尾结束 */

@@ -1,0 +1,96 @@
+body {
+    background: #f2f2f2;
+}
+
+.login .login-panel,
+.info {
+    width: 400px;
+    margin: auto;
+}
+
+.login .login-panel {
+    /* margin-top: 150px; */
+    background: #fff;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3),0 0 40px rgba(0,0,0,0.1) inset;
+}
+
+.login .header {
+    height: 61px;
+    background: #9b0d14;
+}
+
+.login .head-text {
+    color: #fff;
+    position: relative;
+    top: -1em;
+    font-size: 18px;
+}
+
+.login .body {
+    padding: 15px;
+    position: relative;
+    height: 110px;
+}
+
+.login .body h2,
+.login .body input,
+.login .body button {
+    position: absolute;
+}
+
+.login .body h2 {
+    top:20px;
+}
+
+.login .body input {
+    bottom: 28px;
+}
+
+.login .body button {
+	width: 30%;
+	height: 36px;
+	background: none repeat scroll 0% 0% rgb(155, 13, 20);
+	font-size: 14px;
+	font-weight: bold;
+	border: medium none;
+	color: #fff;
+	cursor: pointer;
+	letter-spacing: 2px;
+	right: 20px;
+	top: 32px;
+}
+
+.login .info {
+    text-align: center;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes rotateLoading {
+    from {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.login-loading {
+    border-radius: 50%;
+    width: 66px;
+    height: 66px;
+    margin: 60px auto;
+    position: relative;
+    border: 10px solid rgba(155, 13, 20, .2);
+    border-top-color: rgb(155, 13, 20);
+    animation-name: rotateLoading;
+    animation-duration: 1.1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}

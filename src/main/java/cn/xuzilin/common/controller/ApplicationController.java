@@ -61,7 +61,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/nxms/info/get")
-    public MessageVo info_get(@RequestBody Map<String,String> map){
+    public MessageVo info_get(@RequestParam Map<String,String> map){
         if (TokenManager.get("manager")==null)
             return ResponesUtil.systemError("登录信息失效!");
         JSONArray jsonArray = new JSONArray();
@@ -149,7 +149,7 @@ public class ApplicationController {
     }
 
     @PostMapping("/nxms/info/manage")
-    public  MessageVo info_manage(@RequestBody Map<String,String> map){
+    public  MessageVo info_manage(@RequestParam Map<String,String> map){
         if (TokenManager.get("manager")==null)
             return ResponesUtil.systemError("登录信息失效!");
         //通过面试后创建task空记录
@@ -165,7 +165,7 @@ public class ApplicationController {
     }
 
     @PostMapping("/nxms/info/add")
-    public MessageVo info_add(@RequestBody Map<String,String> map){
+    public MessageVo info_add(@RequestParam Map<String,String> map){
         if (TokenManager.get("manager")==null)
             return ResponesUtil.systemError("登录信息失效!");
         StudentEntity studentEntity = new StudentEntity();

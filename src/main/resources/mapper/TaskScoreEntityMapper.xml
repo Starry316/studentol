@@ -11,7 +11,7 @@
     <result column="score4" jdbcType="INTEGER" property="score4" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, sid, group, score1, score2, score3, score4
+    id, sid, `group`, score1, score2, score3, score4
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -24,7 +24,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.xuzilin.common.po.TaskScoreEntity">
-    insert into task_score (id, sid, group, 
+    insert into task_score (id, sid, `group`,
       score1, score2, score3, 
       score4)
     values (#{id,jdbcType=INTEGER}, #{sid,jdbcType=INTEGER}, #{group,jdbcType=INTEGER}, 
@@ -41,7 +41,7 @@
         sid,
       </if>
       <if test="group != null">
-        group,
+        `group`,
       </if>
       <if test="score1 != null">
         score1,
